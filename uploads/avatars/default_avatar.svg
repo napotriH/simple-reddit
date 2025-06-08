@@ -1,0 +1,5 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" rx="60" fill="#E6F3FF"/> <!-- Fundal albastru deschis, similar cu hover-ul link-urilor -->
+    <circle cx="60" cy="45" r="25" fill="#0079D3"/> <!-- Capul utilizatorului, culoarea principală a site-ului -->
+    <path d="M100 120C100 95.1472 82.6142 75 60 75C37.3858 75 20 95.1472 20 120" fill="#FF4500"/> <!-- Corpul utilizatorului, culoarea de accent Reddit -->
+</svg>
