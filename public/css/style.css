@@ -1,0 +1,1337 @@
+/* public_html/public/css/style.css */
+
+/* Reset de bază pentru a asigura consistența între browsere */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Regulă generală pentru toate imaginile - asigură responsivitate implicită */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Elimină spațiul suplimentar de sub imagine */
+}
+
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #DAE0E6; /* Fundal gri deschis, similar Reddit */
+    color: #1A1A1B;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column; /* Pentru a permite navbar-ului fix să stea sus */
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden; /* Previne scroll-ul orizontal al paginii */
+}
+
+/* Bara de navigare superioară (similar Reddit) */
+.navbar {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #EBEDF0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; /* Fixează bara de navigare în partea de sus */
+    top: 0;
+    z-index: 1000; /* Asigură că este deasupra altor elemente */
+}
+
+.navbar .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #FF4500; /* Culoare de accent Reddit */
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.navbar .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar .nav-links a {
+    color: #0079D3;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.navbar .nav-links a:hover {
+    background-color: #E6F3FF;
+}
+
+.navbar .nav-links a.create-post-button-nav {
+    background-color: #FF4500;
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 69, 0, 0.2);
+    padding: 8px 15px;
+}
+
+.navbar .nav-links a.create-post-button-nav:hover {
+    background-color: #CC3700;
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
+}
+
+/* Stil pentru link-ul de profil din navbar */
+.navbar .nav-links .profile-link {
+    color: #1A1A1B; /* Culoare text normală */
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0; /* Elimină padding-ul implicit al link-urilor din nav-links */
+    background: none; /* Elimină fundalul implicit */
+}
+.navbar .nav-links .profile-link:hover {
+    text-decoration: underline;
+    background: none;
+}
+
+/* Stiluri pentru meniul hamburger */
+.menu-toggle {
+    display: none; /* Ascuns implicit pe desktop */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001; /* Asigură că este deasupra meniului */
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #555;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animație pentru meniul hamburger când este activ */
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+.nav-menu {
+    display: flex; /* Afișat implicit pe desktop */
+    align-items: center;
+}
+
+/* Wrapper pentru conținutul principal, sub navbar */
+.main-content-wrapper {
+    width: 100%;
+    max-width: 980px; /* Lățime maximă pentru conținutul principal */
+    display: flex;
+    justify-content: center;
+    padding: 20px; /* Spațiu în jurul containerului principal */
+    margin-top: 20px; /* Spațiu de la navbar */
+}
+
+.container {
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 8px; /* Colțuri mai puțin rotunjite pentru containerul principal */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); /* Umbră mai subtilă */
+    width: 100%;
+    max-width: 900px; /* Lățime maximă pentru conținutul din container */
+    text-align: center;
+}
+
+/* Stiluri generale pentru titluri */
+h1, h2, h3, h4 {
+    color: #222222;
+    margin-bottom: 20px; /* Spațiu redus sub titluri */
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.2em;
+    color: #0079D3;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 1.4em;
+}
+
+.form-group {
+    margin-bottom: 15px; /* Spațiu redus sub grupuri de formular */
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px; /* Spațiu redus sub etichete */
+    font-weight: 600;
+    color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px; /* Padding redus */
+    border: 1px solid #D3D6DA;
+    border-radius: 4px; /* Colțuri mai puțin rotunjite */
+    font-size: 0.95em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #FFFFFF;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #0079D3;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 121, 211, 0.2); /* Umbră mai subtilă la focus */
+}
+
+button {
+    background-color: #0079D3;
+    color: white;
+    padding: 10px 20px; /* Padding redus */
+    border: none;
+    border-radius: 4px; /* Colțuri mai puțin rotunjite */
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 121, 211, 0.15); /* Umbră mai subtilă */
+}
+
+button:hover {
+    background-color: #005CAF;
+    transform: translateY(-1px); /* Efect de ridicare mai subtil */
+    box-shadow: 0 4px 10px rgba(0, 121, 211, 0.25);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 121, 211, 0.1);
+}
+
+.message {
+    padding: 12px; /* Padding redus */
+    margin-bottom: 20px; /* Spațiu redus */
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeInSlideDown 0.5s forwards;
+}
+
+.message.success {
+    background-color: #D4EDDA;
+    color: #155724;
+    border: 1px solid #C3E6CB;
+}
+
+.message.error {
+    background-color: #F8D7DA;
+    color: #721C24;
+    border: 1px solid #F5C6CB;
+}
+
+.link-text {
+    margin-top: 15px; /* Spațiu redus */
+    font-size: 0.9em;
+    color: #555;
+}
+
+.link-text a {
+    color: #0079D3;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.link-text a:hover {
+    color: #005CAF;
+    text-decoration: underline;
+}
+
+/* Stiluri pentru antetul paginii (acum, în interiorul containerului) */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #E0E0E0;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.page-header h1 {
+    font-size: 1.8em; /* Mărime redusă, deoarece avem un navbar global */
+    margin: 0;
+    flex-shrink: 0;
+}
+.page-header .user-info {
+    font-size: 0.95em;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.page-header .user-info a {
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+.page-header .user-info a:hover {
+    background-color: #E6F3FF;
+    text-decoration: none;
+}
+/* Butonul de creare postare din antetul paginii va fi eliminat și mutat în navbar */
+.page-header .user-info a.create-post-button {
+    display: none; /* Ascunde butonul vechi, deoarece avem unul în navbar */
+}
+
+/* Stiluri pentru butoanele de filtrare (Toate postările / Abonamentele mele) */
+.filter-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px; /* Spațiu față de titlu */
+    justify-content: center; /* Centrează butoanele */
+    width: 100%; /* Ocupă toată lățimea disponibilă */
+}
+.filter-button {
+    background-color: #F6F7F8; /* Fundal gri deschis */
+    color: #555;
+    padding: 8px 15px;
+    border: 1px solid #DDE0E3;
+    border-radius: 20px; /* Buton rotunjit */
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap; /* Previne ruperea textului pe mai multe rânduri */
+}
+.filter-button:hover {
+    background-color: #E6F3FF;
+    border-color: #0079D3;
+    color: #0079D3;
+}
+.filter-button.active {
+    background-color: #0079D3; /* Culoare de accent pentru butonul activ */
+    color: white;
+    border-color: #0079D3;
+    box-shadow: 0 2px 5px rgba(0, 121, 211, 0.2);
+}
+.filter-button.active:hover {
+    background-color: #005CAF;
+    border-color: #005CAF;
+}
+
+
+/* Stiluri pentru afișarea postărilor */
+.post-list {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.post-card {
+    background-color: #FFFFFF;
+    border: 1px solid #DDE0E3; /* Culoare de bordură mai subtilă */
+    border-radius: 4px; /* Colțuri mai puțin rotunjite */
+    margin-bottom: 10px; /* Spațiu redus între carduri */
+    padding: 10px; /* Padding redus */
+    display: flex;
+    align-items: flex-start;
+    gap: 10px; /* Spațiu redus între secțiuni */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07); /* Umbră mai subtilă */
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.post-card:hover {
+    transform: translateY(-1px); /* Efect de ridicare mai subtil */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-card .vote-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8em;
+    color: #555;
+    flex-shrink: 0;
+    width: 40px; /* Lățime fixă pentru secțiunea de vot */
+}
+
+.post-card .vote-section .arrow {
+    font-size: 1.6em; /* Săgeți mai mici */
+    cursor: pointer;
+    color: #C6C6C6;
+    transition: color 0.2s ease, transform 0.1s ease;
+    padding: 5px; /* Padding mărit pentru o zonă de click mai mare */
+}
+.post-card .vote-section .arrow:active {
+    transform: scale(0.9);
+}
+
+/* Stiluri pentru săgețile votate (general pentru post-card) */
+.post-card .vote-section .arrow.up.voted { color: #FF4500; }
+.post-card .vote-section .arrow.down.voted { color: #7193FF; }
+.post-card .vote-section .arrow.up:hover:not(.voted) { color: #FF4500; }
+.post-card .vote-section .arrow.down:hover:not(.voted) { color: #7193FF; }
+
+.post-card .vote-section .score {
+    font-weight: bold;
+    margin: 2px 0; /* Spațiu redus */
+    color: #1A1A1B;
+    font-size: 1em;
+}
+
+.post-card .post-content {
+    flex-grow: 1;
+    text-align: left;
+    /* Adăugat/confirmat pentru a preveni overflow-ul de text */
+    min-width: 0; /* Permite flex item-ului să se micșoreze */
+}
+
+.post-card .post-title {
+    font-size: 1.2em; /* Mărime redusă */
+    font-weight: bold;
+    margin-bottom: 5px; /* Spațiu redus */
+    color: #1A1A1B;
+}
+.post-card .post-title a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+}
+.post-card .post-title a:hover {
+    color: #0079D3;
+}
+
+.post-card .post-meta {
+    font-size: 0.8em; /* Mărime redusă */
+    color: #777;
+    margin-bottom: 8px; /* Spațiu redus */
+}
+
+.post-card .post-meta a {
+    color: #0079D3;
+    text-decoration: none;
+}
+
+.post-card .post-meta a:hover {
+    text-decoration: underline;
+}
+
+.post-card .post-body {
+    font-size: 0.95em; /* Mărime redusă */
+    color: #333;
+    margin-bottom: 8px; /* Spațiu redus */
+    word-wrap: break-word; /* Proprietate CSS veche, dar utilă */
+    word-break: break-word; /* Forțează ruperea cuvintelor lungi */
+    overflow-wrap: break-word; /* Versiunea modernă a word-wrap */
+}
+
+.post-card .post-body a {
+    color: #0079D3;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.post-card .post-body a:hover {
+    text-decoration: underline;
+}
+
+.no-posts {
+    text-align: center;
+    color: #777;
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+}
+
+/* Stiluri pentru pagina de detalii postare (post_detail.php) */
+.post-detail-card {
+    background-color: #FFFFFF;
+    border: 1px solid #DDE0E3;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 20px; /* Padding redus */
+    display: flex;
+    align-items: flex-start; /* Aliniază secțiunea de votare sus */
+    gap: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+}
+.post-detail-card .vote-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9em; /* Mărime similară cu post-card */
+    color: #555;
+    flex-shrink: 0;
+    width: 40px; /* Lățime fixă */
+}
+.post-detail-card .vote-section .arrow {
+    font-size: 1.8em; /* Săgeți mai mici pentru detalii */
+    cursor: pointer; /* Adăugat explicit pentru a asigura cursorul de tip "pointer" */
+    padding: 8px; /* Padding mărit pentru o zonă de click mai mare și pe desktop */
+}
+/* Stiluri pentru săgețile votate pe pagina de detalii postare */
+.post-detail-card .vote-section .arrow.up.voted { color: #FF4500; }
+.post-detail-card .vote-section .arrow.down.voted { color: #7193FF; }
+.post-detail-card .vote-section .arrow.up:hover:not(.voted) { color: #FF4500; }
+.post-detail-card .vote-section .arrow.down:hover:not(.voted) { color: #7193FF; }
+
+
+.post-detail-card .vote-section .score {
+    font-size: 1.2em; /* Scor mai mic pentru detalii */
+}
+.post-detail-card .post-title {
+    font-size: 2.2em; /* Mărime mai mare pentru titlul principal */
+    margin-bottom: 10px; /* Spațiu mărit sub titlu */
+    color: #1A1A1B; /* Asigură o culoare consistentă */
+    text-align: left; /* Aliniază la stânga */
+}
+.post-detail-card .post-meta {
+    font-size: 0.95em; /* Mărime text mai mare pentru meta */
+    color: #555; /* Culoare puțin mai închisă pentru lizibilitate */
+    margin-bottom: 15px; /* Spațiu mărit sub meta */
+    text-align: left; /* Aliniază la stânga */
+}
+.post-detail-card .post-meta a {
+    color: #0079D3;
+    text-decoration: none;
+}
+.post-detail-card .post-meta a:hover {
+    text-decoration: underline;
+}
+
+/* Stil pentru avatarul din meta-informațiile postării */
+.post-meta-avatar {
+    width: 24px; /* Dimensiune fixă pentru avatar */
+    height: 24px;
+    border-radius: 50%; /* Formă rotundă */
+    object-fit: cover; /* Asigură că imaginea umple cercul */
+    vertical-align: middle; /* Aliniază vertical cu textul */
+    margin-right: 5px; /* Spațiu la dreapta avatarului */
+    border: 1px solid #E0E0E0; /* Bordură subtilă */
+    display: inline-block; /* <-- Modificarea cheie: permite elementului să stea inline */
+}
+
+/* Stil pentru imaginile din corpul postării */
+.post-detail-card .post-body img {
+    max-width: 100%; /* Asigură că imaginea nu depășește lățimea containerului */
+    height: auto; /* Păstrează proporțiile imaginii */
+    display: block; /* Elimină spațiul suplimentar de sub imagine */
+    margin: 15px auto; /* Centrare orizontală și spațiu vertical */
+    border-radius: 4px; /* Colțuri rotunjite */
+}
+
+
+.post-detail-card .post-body {
+    font-size: 1.15em; /* Mărime text mai mare pentru conținut */
+    color: #333; /* Culoare mai închisă pentru lizibilitate */
+    line-height: 1.7; /* Spațiu între rânduri pentru lizibilitate */
+    margin-bottom: 15px; /* Spațiu mărit sub conținut */
+    text-align: left; /* Aliniază la stânga */
+    /* Proprietăți pentru a forța ruperea textului */
+    word-wrap: break-word;
+    word-break: break-word; /* Mai agresiv, rupe cuvintele lungi */
+    overflow-wrap: break-word;
+}
+.post-detail-card .post-body a {
+    color: #0079D3;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.post-detail-card .post-body a:hover {
+    text-decoration: underline;
+}
+
+
+/* Stiluri pentru secțiunea de comentarii */
+.comments-section {
+    margin-top: 20px; /* Spațiu redus */
+    background-color: #FFFFFF;
+    padding: 20px; /* Padding redus */
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+}
+.comments-section h3 {
+    color: #0079D3;
+    margin-bottom: 15px; /* Spațiu redus */
+    font-size: 1.5em; /* Mărime redusă */
+    border-bottom: 1px solid #E0E0E0;
+    padding-bottom: 8px; /* Padding redus */
+}
+.comment-form textarea {
+    min-height: 80px; /* Înălțime minimă redusă */
+    width: 100%; /* Asigură lățime completă */
+    padding: 10px;
+    border: 1px solid #D3D6DA;
+    border-radius: 4px;
+    font-size: 0.95em;
+    margin-bottom: 10px;
+    resize: vertical;
+}
+.comment-form button {
+    padding: 10px 20px;
+    font-size: 0.95em;
+    width: auto; /* Permite butonului să aibă lățime naturală */
+    float: right; /* Aliniază butonul la dreapta */
+    margin-top: 5px;
+}
+.comment-form::after { /* Clearfix pentru float */
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.comments-list {
+    margin-top: 20px;
+}
+
+.comment-card {
+    background-color: #F8F8F8;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    margin-bottom: 8px; /* Spațiu redus */
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+.comment-card .vote-section-comment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8em;
+    color: #555;
+    flex-shrink: 0;
+    width: 30px; /* Lățime fixă pentru voturile comentariilor */
+}
+.comment-card .vote-section-comment .arrow {
+    font-size: 1.3em; /* Mărime redusă */
+    cursor: pointer;
+    color: #C6C6C6;
+    transition: color 0.2s ease, transform 0.1s ease;
+    padding: 5px; /* Padding mărit pentru o zonă de click mai mare */
+}
+.comment-card .vote-section-comment .arrow:active {
+    transform: scale(0.9);
+}
+.comment-card .vote-section-comment .arrow.up-comment.voted { color: #FF4500; }
+.comment-card .vote-section-comment .arrow.down-comment.voted { color: #7193FF; }
+.comment-card .vote-section-comment .arrow.up-comment:hover:not(.voted) { color: #FF4500; }
+.comment-card .vote-section-comment .arrow.down-comment:hover:not(.voted) { color: #7193FF; }
+
+.comment-card .vote-section-comment .score-comment {
+    font-weight: bold;
+    margin: 2px 0;
+    color: #1A1A1B;
+    font-size: 0.9em; /* Mărime redusă */
+}
+
+.comment-card .comment-content {
+    flex-grow: 1;
+    text-align: left;
+    min-width: 0; /* Permite flex item-ului să se micșoreze */
+}
+.comment-card .comment-meta {
+    font-size: 0.75em; /* Mărime redusă */
+    color: #777;
+    margin-bottom: 5px;
+}
+/* Stil pentru avatarul din meta-informațiile comentariului */
+.comment-meta-avatar {
+    width: 20px; /* Dimensiune fixă pentru avatarul comentariului */
+    height: 20px;
+    border-radius: 50%; /* Formă rotundă */
+    object-fit: cover;
+    vertical-align: middle;
+    margin-right: 5px;
+    border: 1px solid #E0E0E0;
+    display: inline-block; /* <-- Modificarea cheie: permite elementului să stea inline */
+}
+
+.comment-card .comment-body {
+    font-size: 0.9em; /* Mărime redusă */
+    color: #333;
+    line-height: 1.5;
+    word-wrap: break-word;
+    word-break: break-word; /* Forțează ruperea cuvintelor lungi */
+    overflow-wrap: break-word;
+}
+.reply-button {
+    background: none;
+    border: none;
+    color: #0079D3;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 4px 0;
+    margin-top: 5px;
+    transition: text-decoration 0.2s ease;
+}
+.reply-button:hover {
+    text-decoration: underline;
+}
+
+/* Stiluri pentru indentarea comentariilor imbricate */
+.comments-list.level-1 .comment-card { margin-left: 20px; border-left: 3px solid #D3D6DA; padding-left: 10px; }
+.comments-list.level-2 .comment-card { margin-left: 40px; border-left: 3px solid #D3D6DA; padding-left: 10px; }
+.comments-list.level-3 .comment-card { margin-left: 60px; border-left: 3px solid #D3D6DA; padding-left: 10px; }
+/* Adaugă mai multe niveluri dacă este necesar */
+
+/* Stiluri pentru pagina de comunități (communities.php) */
+.community-form-section, .community-list-section {
+    background-color: #FFFFFF;
+    padding: 25px; /* Padding redus */
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+    margin-bottom: 20px; /* Spațiu redus */
+}
+.community-form-section h3, .community-list-section h3 {
+    font-size: 1.5em; /* Mărime redusă */
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+.community-form input[type="text"],
+.community-form textarea {
+    padding: 12px;
+    border-radius: 6px;
+}
+.community-form button {
+    padding: 12px 25px;
+    font-size: 1em;
+}
+
+.community-item {
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #FDFDFD;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.community-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.community-item h4 {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+.community-item p {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+.community-item .meta {
+    font-size: 0.8em;
+    margin-bottom: 10px; /* Adăugat spațiu sub meta */
+}
+
+/* Stiluri pentru butonul de abonare/dezabonare */
+.subscribe-button {
+    background-color: #0079D3; /* Culoare primară pentru abonare */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px; /* Buton rotunjit */
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    width: auto; /* Lățime automată */
+    display: inline-block; /* Pentru a permite marginile laterale */
+    margin-top: 10px; /* Spațiu de la meta */
+    box-shadow: 0 2px 5px rgba(0, 121, 211, 0.2);
+}
+
+.subscribe-button:hover {
+    background-color: #005CAF;
+    opacity: 0.9;
+}
+
+.subscribe-button.subscribed {
+    background-color: #D3D6DA; /* Gri deschis pentru dezabonare */
+    color: #555;
+    box-shadow: none;
+}
+
+.subscribe-button.subscribed:hover {
+    background-color: #B0B3B6;
+    color: #333;
+}
+
+/* Stiluri pentru pagina de profil (profile.php) */
+.profile-container {
+    padding-bottom: 20px; /* Adaugă padding la bază containerului */
+}
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px; /* Mărit padding-ul de jos */
+    border-bottom: 1px solid #E0E0E0;
+    position: relative; /* Pentru a poziționa butonul de editare */
+}
+.profile-header h1 {
+    font-size: 2.2em; /* Mărit titlul paginii */
+    color: #0079D3; /* Culoarea primară */
+    margin-bottom: 15px; /* Mărit spațiul */
+}
+.profile-header .profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px; /* Spațiu sub info */
+}
+.profile-avatar-display {
+    width: 120px; /* Mărime mai mare pentru avatar */
+    height: 120px;
+    border-radius: 50%; /* Formă rotundă */
+    object-fit: cover; /* Asigură că imaginea umple cercul */
+    border: 3px solid #FF4500; /* Bordură de accent */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.profile-header h2 {
+    font-size: 1.8em;
+    margin: 10px 0 5px;
+    color: #1A1A1B;
+}
+.profile-header p {
+    font-size: 0.95em;
+    color: #777;
+    margin: 0;
+}
+.edit-profile-btn {
+    background-color: #FF4500;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px; /* Buton rotunjit */
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    margin-top: 15px;
+    box-shadow: 0 2px 8px rgba(255, 69, 0, 0.2);
+}
+.edit-profile-btn:hover {
+    background-color: #CC3700;
+    transform: translateY(-2px);
+}
+.profile-edit-form {
+    background-color: #F8F8F8;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+.profile-edit-form h3 {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    color: #0079D3;
+}
+.profile-edit-form .form-group {
+    margin-bottom: 15px;
+}
+.profile-edit-form .form-group label {
+    font-weight: 600;
+    color: #333;
+}
+.profile-edit-form .form-group input[type="text"],
+.profile-edit-form .form-group input[type="email"],
+.profile-edit-form .form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #D3D6DA;
+    border-radius: 4px;
+    font-size: 1em;
+}
+.profile-edit-form .form-group input[type="file"] {
+    padding: 5px; /* Padding mai mic pentru input file */
+}
+.profile-edit-form .form-help-text {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 5px;
+    text-align: left;
+}
+.profile-edit-form button[type="submit"] {
+    margin-top: 20px;
+    width: auto;
+    padding: 10px 25px;
+    background-color: #0079D3;
+    float: left; /* Aliniază la stânga */
+    box-shadow: 0 2px 8px rgba(0, 121, 211, 0.2);
+}
+.profile-edit-form button[type="submit"]:hover {
+    background-color: #005CAF;
+}
+.profile-edit-form .cancel-btn {
+    background-color: #AAB8C2; /* Culoare gri pentru Anulează */
+    margin-top: 20px;
+    width: auto;
+    padding: 10px 25px;
+    float: right; /* Aliniază la dreapta */
+    box-shadow: 0 2px 8px rgba(170, 184, 194, 0.2);
+}
+.profile-edit-form .cancel-btn:hover {
+    background-color: #8899A6;
+}
+.profile-edit-form::after { /* Clearfix pentru butoanele flotante */
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+.profile-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #E0E0E0;
+}
+.profile-tabs .tab-button {
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s ease, border-bottom 0.2s ease;
+    border-bottom: 3px solid transparent; /* Pentru a crea linia de sub tab */
+    margin-bottom: -1px; /* Compensează bordura de jos a containerului */
+}
+.profile-tabs .tab-button:hover {
+    color: #0079D3;
+}
+.profile-tabs .tab-button.active {
+    color: #0079D3;
+    border-bottom: 3px solid #0079D3;
+}
+
+.tab-content {
+    display: none; /* Ascunde toate tab-urile implicit */
+    padding-top: 20px;
+}
+.tab-content.active {
+    display: block; /* Afișează tab-ul activ */
+}
+.tab-content h2 {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    color: #222;
+    text-align: left;
+}
+
+/* Stiluri specifice pentru comentariile din profil */
+.comment-list .comment-item {
+    background-color: #FDFDFD;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 10px;
+    text-align: left;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+}
+.comment-list .comment-item .comment-meta {
+    font-size: 0.85em;
+    color: #777;
+    margin-bottom: 8px;
+}
+.comment-list .comment-item .comment-meta .score {
+    font-weight: bold;
+    color: #1A1A1B;
+}
+.comment-list .comment-item .comment-meta a {
+    color: #0079D3;
+    text-decoration: none;
+}
+.comment-list .comment-item .comment-meta a:hover {
+    text-decoration: underline;
+}
+.comment-list .comment-item .comment-content p {
+    font-size: 0.95em;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    word-wrap: break-word; /* Forțează ruperea cuvintelor lungi */
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+.comment-list .comment-item .comment-vote-section {
+    display: flex;
+    gap: 10px;
+    font-size: 0.9em;
+    color: #555;
+    align-self: flex-start; /* Aliniază la stânga */
+}
+.comment-list .comment-item .comment-vote-section .arrow {
+    font-size: 1.5em; /* Săgeți mai mici */
+    cursor: pointer;
+    color: #C6C6C6;
+    transition: color 0.2s ease, transform 0.1s ease;
+    padding: 5px; /* Padding mărit pentru o zonă de click mai mare */
+}
+.comment-list .comment-item .comment-vote-section .arrow:active {
+    transform: scale(0.9);
+}
+.comment-list .comment-item .comment-vote-section .arrow.up.voted { color: #FF4500; }
+.comment-list .comment-item .comment-vote-section .arrow.down.voted { color: #7193FF; }
+.comment-list .comment-item .comment-vote-section .arrow.up:hover:not(.voted) { color: #FF4500; }
+.comment-list .comment-item .comment-vote-section .arrow.down:hover:not(.voted) { color: #7193FF; }
+
+
+.no-comments {
+    text-align: center;
+    color: #777;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+}
+
+
+/* Responsivitate generală */
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap; /* Permite elementelor să treacă pe rândul următor */
+        padding: 8px 15px;
+    }
+    .navbar .logo {
+        font-size: 1.5em;
+        margin-right: auto; /* Împinge logo-ul la stânga */
+    }
+    .navbar .menu-toggle {
+        display: flex; /* Afișează butonul hamburger pe mobil */
+    }
+    .navbar .nav-menu {
+        flex-direction: column;
+        width: 100%;
+        max-height: 0; /* Ascunde meniul implicit */
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        background-color: #FFFFFF;
+        border-top: 1px solid #EBEDF0;
+        position: absolute; /* Poziționează meniul sub navbar */
+        top: 100%; /* Sub navbar */
+        left: 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        padding: 0; /* Elimină padding-ul implicit */
+        z-index: 999;
+    }
+    .navbar .nav-menu.active {
+        max-height: 300px; /* Înălțime maximă pentru a afișa meniul (ajustează dacă e nevoie) */
+        padding: 10px 0; /* Adaugă padding când este activ */
+    }
+    .navbar .nav-links {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        gap: 5px; /* Spațiu redus între link-uri */
+    }
+    .navbar .nav-links span,
+    .navbar .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0; /* Padding pentru elementele din meniu */
+        border-bottom: 1px solid #F0F0F0; /* Linie de separare */
+    }
+    .navbar .nav-links span:last-child,
+    .navbar .nav-links a:last-child {
+        border-bottom: none; /* Fără linie pentru ultimul element */
+    }
+    .navbar .nav-links .profile-link {
+        font-size: 0.9em; /* Ajustare mărime font pe mobil */
+    }
+    .navbar .nav-links a.create-post-button-nav {
+        margin-top: 10px; /* Spațiu deasupra butonului de creare postare */
+    }
+
+
+    .main-content-wrapper {
+        padding: 15px;
+        margin-top: 15px;
+    }
+    .container {
+        padding: 20px;
+    }
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+    .page-header h1 {
+        font-size: 1.6em;
+    }
+    .page-header .user-info {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.2em; }
+
+    .post-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 8px;
+    }
+    .post-card .vote-section {
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 8px;
+        width: auto; /* Lățime automată pe mobil */
+    }
+    .post-card .vote-section .arrow {
+        font-size: 1.8em;
+    }
+    .post-card .post-content {
+        width: 100%;
+    }
+    .post-card .post-title {
+        font-size: 1.1em;
+    }
+    .post-card .post-meta {
+        font-size: 0.75em;
+    }
+    .post-card .post-body {
+        font-size: 0.9em;
+    }
+
+    .post-detail-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+    }
+    .post-detail-card .vote-section {
+        flex-direction: row; /* Săgețile vor fi pe un rând pe mobil */
+        gap: 10px;
+        margin-bottom: 8px;
+        width: auto; /* Lățime automată pe mobil */
+    }
+    .post-detail-card .vote-section .arrow {
+        font-size: 2em; /* Săgeți mai mari pe mobil pentru a fi ușor de atins */
+        padding: 10px; /* Padding mărit pentru o zonă de click mai mare */
+    }
+    .post-detail-card .post-content {
+        width: 100%;
+    }
+    .post-detail-card .post-title {
+        font-size: 1.6em; /* Mărime adaptată pentru mobil */
+    }
+    .post-detail-card .post-meta {
+        font-size: 0.85em; /* Mărime adaptată pentru mobil */
+        margin-bottom: 10px;
+    }
+    .post-meta-avatar { /* Specific pentru mobil */
+        width: 20px;
+        height: 20px;
+    }
+    .post-detail-card .post-body {
+        font-size: 1em; /* Mărime adaptată pentru mobil */
+        margin-bottom: 10px;
+    }
+
+    .comments-section {
+        padding: 15px;
+    }
+    .comments-section h3 {
+        font-size: 1.3em;
+    }
+    .comment-form textarea {
+        min-height: 60px;
+    }
+    .comment-form button {
+        width: 100%; /* Butonul de comentariu pe lățime completă pe mobil */
+        float: none; /* Anulează float-ul */
+        margin-top: 10px;
+    }
+    .comment-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 8px;
+    }
+    .comment-card .vote-section-comment {
+        flex-direction: row;
+        gap: 8px;
+        margin-bottom: 5px;
+    }
+    .comment-card .vote-section-comment .arrow {
+        font-size: 1.5em;
+    }
+    .comment-card .comment-content {
+        width: 100%;
+    }
+    .comment-meta-avatar { /* Specific pentru mobil */
+        width: 18px;
+        height: 18px;
+    }
+    .reply-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .comments-list.level-1 .comment-card { margin-left: 15px; padding-left: 8px; }
+    .comments-list.level-2 .comment-card { margin-left: 30px; padding-left: 8px; }
+    .comments-list.level-3 .comment-card { margin-left: 45px; padding-left: 8px; }
+
+    .community-form-section, .community-list-section {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    .community-form-section h3, .community-list-section h3 {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    .community-form button {
+        padding: 10px 20px;
+        font-size: 0.95em;
+    }
+    .community-item {
+        padding: 12px;
+    }
+
+    .subscribe-button {
+        width: 100%; /* Lățime completă pe mobil */
+        margin-top: 15px; /* Spațiu mai mare pe mobil */
+    }
+
+    /* Stiluri pentru pagina de profil pe mobil */
+    .profile-container {
+        padding-bottom: 15px;
+    }
+    .profile-header {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+    .profile-header h1 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+    .profile-header .profile-info {
+        gap: 5px;
+        margin-bottom: 15px;
+    }
+    .profile-avatar-display {
+        width: 90px;
+        height: 90px;
+        border-width: 2px; /* Bordură mai subțire pe mobil */
+    }
+    .profile-header h2 {
+        font-size: 1.5em;
+        margin: 8px 0 4px;
+    }
+    .profile-header p {
+        font-size: 0.85em;
+    }
+    .edit-profile-btn {
+        margin-top: 10px;
+        padding: 8px 18px;
+        font-size: 0.85em;
+    }
+    .profile-edit-form {
+        padding: 15px;
+        margin-top: 15px;
+    }
+    .profile-edit-form h3 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+    .profile-edit-form .form-group {
+        margin-bottom: 10px;
+    }
+    .profile-edit-form .form-help-text {
+        font-size: 0.75em;
+    }
+    .profile-edit-form button[type="submit"],
+    .profile-edit-form .cancel-btn {
+        width: 48%; /* Ocupă jumătate din lățime */
+        float: none; /* Anulează float-ul */
+        display: inline-block; /* Pentru a sta pe aceeași linie */
+        margin: 10px 1% 0; /* Spațiu între ele */
+    }
+    .profile-edit-form::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .profile-tabs {
+        flex-direction: column; /* Tab-uri pe verticală pe mobil */
+        gap: 5px;
+    }
+    .profile-tabs .tab-button {
+        width: 100%;
+        font-size: 1em;
+        padding: 8px 15px;
+    }
+    .tab-content h2 {
+        text-align: center; /* Titlul tab-ului centrat pe mobil */
+        font-size: 1.4em;
+    }
+    .comment-list .comment-item .comment-vote-section {
+        align-self: center; /* Centrează secțiunea de vot pe mobil */
+        margin-top: 10px;
+    }
+}
+
+/* Animație pentru mesaje */
+@keyframes fadeInSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
